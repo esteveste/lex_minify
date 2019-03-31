@@ -3,6 +3,7 @@
 %{
 #include "main.c"
 
+char* FILE_TYPE ="dart";
 %}
 
 %x M_COM

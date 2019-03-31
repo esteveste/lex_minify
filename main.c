@@ -9,6 +9,7 @@ extern int yylex();
 extern void yyset_in(FILE *_in_str);
 extern YY_BUFFER_STATE yy_scan_buffer(char *, size_t);
 
+extern char* FILE_TYPE;
 extern FILE *yyout;
 extern void yyset_out(FILE *_out_str);
 
@@ -65,7 +66,7 @@ void tree(char *basePath, char *baseOutPath)
 
         if (strcmp(dp->d_name, ".") != 0 && strcmp(dp->d_name, "..") != 0)
         {
-            if (strcmp(get_filename_ext(dp->d_name), "dart") == 0)
+            if (strcmp(get_filename_ext(dp->d_name), FILE_TYPE) == 0)
             {
                 char filePath[1000];
                 sprintf(filePath, "%s/%s", basePath, dp->d_name);
@@ -98,6 +99,7 @@ int main(int argc, char **argv)
     if (argc < 2)
     {
         printf("minify '/input/folder' '/output/folder'\n");
+        printf("\nminifies files of type %s\n",FILE_TYPE);
         return -1;
     }
 
